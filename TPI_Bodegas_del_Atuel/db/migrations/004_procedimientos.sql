@@ -1,0 +1,13 @@
+-- =============================================================================
+-- 004_procedimientos.sql — Etapa 2
+-- Propósito: Definir procedimientos transaccionales.
+-- Procedimientos exigidos (checklist):
+--   [x] sp_procesar_ingreso — valida estado, FOR UPDATE, modifica stocks, cambia estado; todo o nada
+--   [x] sp_procesar_transferencia — valida estado, FOR UPDATE, modifica stocks, cambia estado; todo o nada
+-- Cada procedimiento debe:
+--   - Validar el estado actual del documento
+--   - Bloquear filas con SELECT ... FOR UPDATE
+--   - Modificar los stocks correspondientes
+--   - Cambiar el estado del documento
+--   - Revertir todo si algo falla (transacción)
+-- TODO (grupo): escribir los procedimientos reales aquí. Este archivo es solo un esqueleto de comentarios.

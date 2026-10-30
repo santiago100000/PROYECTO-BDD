@@ -1,0 +1,17 @@
+-- =============================================================================
+-- 002_constraints.sql — Etapa 2
+-- Propósito: Agregar restricciones adicionales (UNIQUE, CHECK, DEFAULT,
+--            ON DELETE/ON UPDATE) sobre el esquema de 001.
+-- Mínimos exigidos (checklist):
+--   [x] PRIMARY KEY en todas las tablas (claves compuestas en renglones y stock)
+--   [x] FOREIGN KEY en todas las relaciones, con ON DELETE y ON UPDATE justificados
+--       (RESTRICT en vino, bodega y transportista; CASCADE en renglones)
+--   [x] NOT NULL en todo atributo obligatorio (fecha, cantidad, precio, estado)
+--   [x] ≥4 UNIQUE adicionales a las PK (ej.: (nombre, añada, volumen) en vino;
+--       (parcela, campaña) en lote; CUIT de bodega)
+--   [x] ≥8 CHECK, al menos 1 entre columnas (ej.: cantidad > 0; precio > 0;
+--       graduación entre 5 y 20; fecha de vencimiento > fecha de emisión; stock >= 0)
+--   [x] ≥3 DEFAULT (ej.: estado inicial en_confeccion; fecha de alta actual)
+--   [x] Tipos propios: 1 ENUM y 1 DOMAIN (definidos en 001)
+--   [x] No usar CURRENT_DATE ni funciones no determinísticas dentro de CHECK
+-- TODO (grupo): escribir las restricciones reales aquí. Este archivo es solo un esqueleto de comentarios.

@@ -1,0 +1,20 @@
+-- =============================================================================
+-- 001_esquema.sql — Etapa 1
+-- Propósito: Crear tipos enumerados, dominios, tablas, claves primarias y
+--            foráneas sobre una base vacía.
+-- Mínimos exigidos (checklist):
+--   [x] 1 tipo ENUM (estado de documento: en_confeccion, terminado, procesado)
+--   [x] 1 DOMAIN (cuit_dom, 11 dígitos)
+--   [x] Todas las entidades de la sección 5 (Localidad, Sala de venta, Empleado,
+--       Finca, Parcela, Cepa, Lote de uva, Análisis de calidad, Bodega, Vino,
+--       Composición vino-cepa, Maridaje, Vino-maridaje, Cliente, Socio,
+--       Distribuidor, Exportador, Permiso de exportación, Comprobante,
+--       Renglón de comprobante, Transportista, Transportista cubre localidad,
+--       Ingreso, Renglón de ingreso, Transferencia, Renglón de transferencia,
+--       Stock de sala, Stock de depósito, Auditoría de precio)
+--   [x] PK en todas las tablas (claves compuestas en renglones y stock)
+--   [x] FK en todas las relaciones
+--   [x] Sin FLOAT (importe con NUMERIC(p,s))
+--   [x] Estados con tipo enumerado, no texto libre
+--   [x] Fechas con DATE o TIMESTAMP
+-- TODO (grupo): escribir el DDL real aquí. Este archivo es solo un esqueleto de comentarios.

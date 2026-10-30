@@ -1,0 +1,7 @@
+.env
+__pycache__/
+.venv/
+node_modules/
+*.sql.gz
+dump_completo*
+.pytest_cache/

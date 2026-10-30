@@ -1,0 +1,16 @@
+-- =============================================================================
+-- 007_roles.sql — Etapa 3
+-- Propósito: Crear roles y asignar privilegios mínimos.
+-- Roles exigidos (checklist):
+--   [x] bodegas_owner (propietario)
+--   [x] app_rw (lectura/escritura para la API; contraseña por variable :'app_password')
+--   [x] reporte_ro (solo lectura para reportes; contraseña por variable :'ro_password')
+-- Requisitos:
+--   [x] REVOKE de privilegios públicos
+--   [x] GRANT mínimos por rol
+--   [x] Las contraseñas entran por variables de psql (:'app_password', :'ro_password'),
+--       nunca escritas en este archivo
+--   [x] La API se conecta con app_rw, nunca con owner ni superusuario
+-- Uso desde docker-compose:
+--   psql -v app_password='...' -v ro_password='...' -f 007_roles.sql
+-- TODO (grupo): escribir los roles y privilegios reales aquí. Este archivo es solo un esqueleto de comentarios.

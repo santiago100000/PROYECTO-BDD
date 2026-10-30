@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bodegas del Atuel — Estado de la API</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header>
+  <h1>Bodegas del Atuel</h1>
+  <p>Gestión y distribución vitivinícola — TPI Integrador de Bases de Datos</p>
+</header>
+
+<main>
+  <section id="estado">
+    <h2>Estado de la API</h2>
+    <div id="salud" class="card">Cargando…</div>
+  </section>
+</main>
+
+<footer>
+  <p>Frontend servido por nginx — puerto 8080</p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const saludEl = document.getElementById("salud");
+  try {
+    const data = await api.getSalud();
+    saludEl.textContent = `API: ${data.api} | DB: ${data.db}`;
+    saludEl.className = "card ok";
+  } catch (err) {
+    saludEl.textContent = `Error: ${err}`;
+    saludEl.className = "card error";
+  }
+});
+</script>
+</body>
+</html>

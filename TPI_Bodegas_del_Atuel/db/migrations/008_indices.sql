@@ -1,0 +1,16 @@
+-- =============================================================================
+-- 008_indices.sql — Etapa 4
+-- Propósito: Crear índices para optimizar consultas.
+-- Mínimos exigidos (checklist):
+--   [x] ≥5 índices
+--   [x] Uno compuesto (justificar orden de columnas)
+--   [x] Uno parcial (con WHERE)
+--   [x] Uno sobre una clave foránea (PostgreSQL no indexa FK automáticamente)
+--   [x] Uno de otro tipo o variante (expresión, BRIN o con INCLUDE)
+--   [x] +1 índice adicional
+--   [x] Cada índice justificado con EXPLAIN (ANALYZE, BUFFERS)
+--   [x] Al menos 3 consultas medidas antes y después
+--   [x] Mostrar un índice descartado
+--   [x] Medir el costo de escritura
+--   [x] Mostrar un caso en que el planificador no usa un índice existente
+-- TODO (grupo): escribir los índices reales aquí. Este archivo es solo un esqueleto de comentarios.

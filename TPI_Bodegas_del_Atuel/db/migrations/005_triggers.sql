@@ -1,0 +1,25 @@
+-- =============================================================================
+-- 005_triggers.sql — Etapa 2
+-- Propósito: Definir triggers de integridad y lógica de negocio.
+-- Mínimos exigidos (checklist):
+--   [x] ≥6 triggers con propósitos distintos
+--   [x] ≥1 BEFORE
+--   [x] ≥1 AFTER
+--   [x] ≥1 constraint trigger diferido (DEFERRABLE INITIALLY DEFERRED)
+--   [x] Cada trigger encabezado con comentario citando la regla RN que protege
+-- Triggers mínimos sugeridos (7):
+--   1. Validación de stock en venta (BEFORE INSERT en renglón de comprobante):
+--      rechaza la venta si no hay stock suficiente en la sala. Regla: RN-09
+--   2. Descuento de stock y cálculo de totales (AFTER INSERT en renglón de comprobante):
+--      actualiza el stock de la sala y los importes del comprobante. Reglas: RN-08, RN-09
+--   3. Control de estados de ingreso y de transferencia:
+--      solo permite en_confeccion → terminado → procesado, sin retrocesos. Reglas: RN-10, RN-11
+--   4. Bloqueo de renglones (BEFORE INSERT/UPDATE/DELETE en renglones de ingreso y transferencia):
+--      no admite cambios si el documento no está en confección. Regla: RN-12
+--   5. Fecha de confección de transferencia (BEFORE INSERT/UPDATE):
+--      fuerza la fecha actual al insertar y prohíbe modificarla. Regla: RN-11
+--   6. Auditoría de precio (AFTER UPDATE en vino):
+--      registra precio anterior, precio nuevo, fecha y usuario. Regla: RN-13
+--   7. Suma de porcentajes de corte (CONSTRAINT TRIGGER DEFERRABLE INITIALLY DEFERRED):
+--      al cerrar la transacción, la composición de cada vino suma 100. Regla: RN-05
+-- TODO (grupo): escribir los triggers reales aquí. Este archivo es solo un esqueleto de comentarios.

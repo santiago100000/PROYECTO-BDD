@@ -1,0 +1,10 @@
+-- =============================================================================
+-- 003_funciones.sql — Etapa 2
+-- Propósito: Definir funciones de la base de datos.
+-- Funciones exigidas (checklist):
+--   [x] fn_total_comprobante — propósito, parámetros, STABLE/IMMUTABLE: TODO
+--   [x] fn_stock_sala — propósito, parámetros, STABLE/IMMUTABLE: TODO
+--   [x] fn_descuento_cliente — propósito, parámetros, STABLE/IMMUTABLE: TODO
+--   [x] fn_antiguedad_anios — propósito, parámetros, STABLE/IMMUTABLE: TODO
+-- Comentario requerido por función: propósito, parámetros, volatilidad (STABLE o IMMUTABLE).
+-- TODO (grupo): escribir las funciones reales aquí. Este archivo es solo un esqueleto de comentarios.

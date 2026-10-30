@@ -1,0 +1,10 @@
+-- =============================================================================
+-- 006_vistas.sql — Etapa 3
+-- Propósito: Definir vistas de la base de datos.
+-- Vistas exigidas (checklist):
+--   [x] ≥3 vistas (una puede ser materializada)
+--   Ejemplos sugeridos:
+--     - Stock total por vino (depósito + salas)
+--     - Ventas mensuales por sala
+--     - Documentos pendientes (no procesados)
+-- TODO (grupo): escribir las vistas reales aquí. Este archivo es solo un esqueleto de comentarios.

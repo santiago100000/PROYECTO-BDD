@@ -1,0 +1,79 @@
+-- =============================================================================
+-- consultas/update.sql — Sentencias UPDATE (etapa 5: U1 a U6)
+-- Cada consigna incluye: código, enunciado literal, estrategia y TODO.
+-- Plantilla comentada: BEGIN; control previo; sentencia; control posterior; ROLLBACK;
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- U1: Recalcular el total de todos los comprobantes aplicando el descuento que
+--     corresponde al tipo de cliente.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*), sum(total) FROM comprobante;
+-- UPDATE comprobante SET total = ...;
+-- SELECT count(*), sum(total) FROM comprobante;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- U2: Aumentar un 20 % el salario de los empleados con más de 5 años de antigüedad.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*) FROM empleado WHERE fn_antiguedad_anios(fecha_ingreso) > 5;
+-- UPDATE empleado SET salario = salario * 1.20 WHERE fn_antiguedad_anios(fecha_ingreso) > 5;
+-- SELECT count(*), avg(salario) FROM empleado WHERE fn_antiguedad_anios(fecha_ingreso) > 5;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- U3: Incrementar un 13 % el precio de los vinos elaborados por una bodega determinada.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT cod, nombre, precio FROM vino WHERE bodega_cuit = '...';
+-- UPDATE vino SET precio = precio * 1.13 WHERE bodega_cuit = '...';
+-- SELECT cod, nombre, precio FROM vino WHERE bodega_cuit = '...';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- U4: En las salas cuyo día de cierre es lunes cambiarlo a miércoles y viceversa,
+--     en una sola sentencia.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, dia_cierre FROM sala_venta WHERE dia_cierre IN ('lunes', 'miércoles');
+-- UPDATE sala_venta SET dia_cierre = CASE WHEN dia_cierre = 'lunes' THEN 'miércoles' ELSE 'lunes' END WHERE dia_cierre IN ('lunes', 'miércoles');
+-- SELECT id, dia_cierre FROM sala_venta WHERE dia_cierre IN ('lunes', 'miércoles');
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- U5: Aplicar un 15 % de descuento de precio a los 10 vinos menos vendidos de toda la red.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT cod, nombre, precio FROM vino ORDER BY (cantidad_vendida) ASC LIMIT 10;
+-- UPDATE vino SET precio = precio * 0.85 WHERE cod IN (SELECT vino_cod FROM renglon_comprobante GROUP BY vino_cod ORDER BY sum(cantidad) ASC LIMIT 10);
+-- SELECT cod, nombre, precio FROM vino WHERE cod IN (...);
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- U6: A los exportadores con más de 3 permisos de exportación, subirles el descuento al 35 %.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, nombre, descuento FROM exportador e JOIN permiso_exportacion p ON p.exportador_id = e.id GROUP BY e.id HAVING count(*) > 3;
+-- UPDATE exportador SET descuento = 35 WHERE id IN (SELECT exportador_id FROM permiso_exportacion GROUP BY exportador_id HAVING count(*) > 3);
+-- SELECT id, nombre, descuento FROM exportador WHERE id IN (...);
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------

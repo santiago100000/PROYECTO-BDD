@@ -1,0 +1,79 @@
+-- =============================================================================
+-- consultas/delete.sql — Sentencias DELETE (etapa 5: D1 a D6)
+-- Cada consigna incluye: código, enunciado literal, estrategia y TODO.
+-- Plantilla comentada: BEGIN; control previo; sentencia; control posterior; ROLLBACK;
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- D1: Borrar los comprobantes con más de 5 años de antigüedad asociados a clientes
+--     socios del club.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*) FROM comprobante c JOIN cliente cl ON c.cliente_id = cl.id WHERE cl.tipo = 'socio' AND c.fecha < CURRENT_DATE - interval '5 years';
+-- DELETE FROM comprobante WHERE fecha < CURRENT_DATE - interval '5 years' AND cliente_id IN (SELECT id FROM cliente WHERE tipo = 'socio');
+-- SELECT count(*) FROM comprobante WHERE fecha < CURRENT_DATE - interval '5 years';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- D2: Eliminar las cepas que no componen ningún vino ni están plantadas en ninguna parcela.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, nombre FROM cepa WHERE id NOT IN (SELECT cepa_id FROM composicion_vino_cepa) AND id NOT IN (SELECT cepa_id FROM parcela);
+-- DELETE FROM cepa WHERE id NOT IN (SELECT cepa_id FROM composicion_vino_cepa) AND id NOT IN (SELECT cepa_id FROM parcela);
+-- SELECT count(*) FROM cepa;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- D3: La sala de una localidad determinada fue dada de baja: eliminar los empleados
+--     de esa sala que trabajaron menos de dos años.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, nombre, fecha_ingreso FROM empleado WHERE sala_id IN (SELECT id FROM sala_venta WHERE localidad_id = '...') AND fn_antiguedad_anios(fecha_ingreso) < 2;
+-- DELETE FROM empleado WHERE sala_id IN (SELECT id FROM sala_venta WHERE localidad_id = '...') AND fn_antiguedad_anios(fecha_ingreso) < 2;
+-- SELECT count(*) FROM empleado WHERE sala_id IN (SELECT id FROM sala_venta WHERE localidad_id = '...');
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- D4: Borrar los clientes socios que nunca compraron y se dieron de alta hace más de 5 años.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, nombre, fecha_alta FROM cliente WHERE tipo = 'socio' AND id NOT IN (SELECT cliente_id FROM comprobante) AND fecha_alta < CURRENT_DATE - interval '5 years';
+-- DELETE FROM cliente WHERE tipo = 'socio' AND id NOT IN (SELECT cliente_id FROM comprobante) AND fecha_alta < CURRENT_DATE - interval '5 years';
+-- SELECT count(*) FROM cliente WHERE tipo = 'socio';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- D5: Eliminar los ingresos en estado procesado de hace más de 365 días.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*) FROM ingreso WHERE estado = 'procesado' AND fecha < CURRENT_DATE - interval '365 days';
+-- DELETE FROM ingreso WHERE estado = 'procesado' AND fecha < CURRENT_DATE - interval '365 days';
+-- SELECT count(*) FROM ingreso WHERE estado = 'procesado';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- D6: Borrar los clientes socios sin compras que viven en una localidad específica.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT id, nombre FROM cliente WHERE tipo = 'socio' AND localidad_id = '...' AND id NOT IN (SELECT cliente_id FROM comprobante);
+-- DELETE FROM cliente WHERE tipo = 'socio' AND localidad_id = '...' AND id NOT IN (SELECT cliente_id FROM comprobante);
+-- SELECT count(*) FROM cliente WHERE tipo = 'socio' AND localidad_id = '...';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------

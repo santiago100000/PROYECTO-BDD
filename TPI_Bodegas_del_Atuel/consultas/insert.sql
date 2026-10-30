@@ -1,0 +1,85 @@
+-- =============================================================================
+-- consultas/insert.sql — Sentencias INSERT (etapa 5: I1 a I6)
+-- Cada consigna incluye: código, enunciado literal, estrategia y TODO.
+-- En las que modifican datos, la plantilla está comentada:
+--   BEGIN; control previo; sentencia; control posterior; ROLLBACK;
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- I1: Insertar en la relación transportista-localidad una nueva cobertura que
+--     vincule la localidad de General Alvear con el transportista que menos
+--     envíos (ingresos trasladados) haya realizado en el último trimestre.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*) FROM transportista_cubre_localidad WHERE localidad = 'General Alvear';
+-- INSERT INTO transportista_cubre_localidad (...) VALUES (...);
+-- SELECT count(*) FROM transportista_cubre_localidad WHERE localidad = 'General Alvear';
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- I2: Si existe algún vino tinto con graduación de 14° o más, crear el maridaje
+--     «cordero al disco» y asociarlo a todos los vinos que cumplan esa condición.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- SELECT count(*) FROM vino WHERE tipo = 'tinto' AND graduacion >= 14;
+-- INSERT INTO maridaje (nombre, temperatura_servicio_c) VALUES ('cordero al disco', 16);
+-- INSERT INTO vino_maridaje (vino_cod, maridaje_id) SELECT cod, (SELECT id FROM maridaje WHERE nombre = 'cordero al disco') FROM vino WHERE tipo = 'tinto' AND graduacion >= 14;
+-- SELECT count(*) FROM vino_maridaje WHERE maridaje_id = (SELECT id FROM maridaje WHERE nombre = 'cordero al disco');
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- I3: Crear un nuevo comprobante con tres renglones para un cliente dado, en la
+--     sala con ID 1, dentro de una transacción y usando las funciones de cálculo.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- INSERT INTO comprobante (numero, fecha, cliente_id, sala_id, subtotal, descuento, total) VALUES (...);
+-- INSERT INTO renglon_comprobante (comprobante_numero, vino_cod, cantidad, precio_unitario, descuento, subtotal) VALUES (...);
+-- INSERT INTO renglon_comprobante (...) VALUES (...);
+-- INSERT INTO renglon_comprobante (...) VALUES (...);
+-- SELECT total FROM comprobante WHERE numero = ...;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- I4: Insertar una nueva bodega.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- INSERT INTO bodega (cuit, razon_social, domicilio) VALUES (...);
+-- SELECT * FROM bodega WHERE cuit = ...;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- I5: Insertar una nueva sala de venta.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- INSERT INTO sala_venta (id, calle, numero, dia_cierre, localidad_id) VALUES (...);
+-- SELECT * FROM sala_venta WHERE id = ...;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
+
+-- -----------------------------------------------------------------------------
+-- I6: Crear un ingreso en confección de 120 botellas de un vino determinado
+--     (por ejemplo «Malbec Reserva» de 750 ml), elaborado por una bodega dada
+--     y trasladado por un transportista dado.
+-- Estrategia: TODO
+-- TODO (grupo): consulta
+-- Plantilla (comentada):
+-- BEGIN;
+-- INSERT INTO ingreso (codigo, fecha, estado, transportista_cod, bodega_cuit) VALUES (...);
+-- INSERT INTO renglon_ingreso (ingreso_codigo, vino_cod, cantidad) VALUES (...);
+-- SELECT estado FROM ingreso WHERE codigo = ...;
+-- ROLLBACK;
+-- -----------------------------------------------------------------------------
